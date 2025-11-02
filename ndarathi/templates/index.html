@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home | Isaac Ngure{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="background-orb"></div>
+  <div class="hero-card" data-aos="fade-up">
+    <h1>Hello, I’m <span class="gradient-text">Isaac Ngure</span></h1>
+    <h2>I build <span class="typed-text"></span></h2>
+    <p>Android Developer • UI/UX Enthusiast • Tech Innovator</p>
+    <a href="{% url 'projects' %}" class="btn">✨ Explore My Work</a>
+  </div>
+</section>
+
+<section class="intro" data-aos="fade-up" data-aos-delay="300">
+  <h2>Who Am I?</h2>
+  <p>
+    I’m a passionate developer who brings ideas to life through code —
+    crafting elegant Android apps and digital experiences that make life
+    simpler and more beautiful.
+  </p>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Contact | Isaac Ngure{% endblock %}
+
+{% block hero %}
+<section class="page-hero">
+  <h1>Let’s <span class="gradient-text">Connect</span></h1>
+  <p>Have a project, idea, or just want to say hi? Let’s make it happen.</p>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+  <div class="contact-wrapper">
+    <div class="contact-info-card">
+      <h2>Get in Touch</h2>
+      <p>
+        I’m always excited to collaborate on creative ideas, projects, or freelance
+        work. Let’s turn your vision into reality.
+      </p>
+
+      <div class="contact-details">
+        <div><i class="fas fa-envelope"></i> ndarathiofficial@gmail.com</div>
+        <div><i class="fas fa-phone"></i> +254 713 224 915</div>
+        <div><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</div>
+      </div>
+
+      <div class="social-icons">
+        <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+<form method="POST" class="contact-form-card">
+  {% csrf_token %}
+  <h2>Send a Message</h2>
+
+  <div class="form-group">{{ form.name }}</div>
+  <div class="form-group">{{ form.email }}</div>
+  <div class="form-group">{{ form.message }}</div>
+
+  <button type="submit" class="btn send-btn">Send Message</button>
+</form>
+
+  </div>
+</section>
+{% endblock %}

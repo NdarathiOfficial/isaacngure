@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="about-section">
+  <div class="about-container">
+    <img src="{% static 'images/profile.jpg' %}" alt="Isaac Profile" class="about-img">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        I’m <strong>Isaac Ngure</strong>, a software developer specializing in Android and web applications.
+        I love crafting visually appealing, user-friendly interfaces that merge creativity and functionality.
+      </p>
+      <p>
+        With experience in <span class="highlight">Kotlin</span>, <span class="highlight">Jetpack Compose</span>, and <span class="highlight">Django</span>,
+        I aim to build scalable solutions that make a real impact.
+      </p>
+      <a href="{% url 'contact' %}" class="btn">Let’s Connect</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

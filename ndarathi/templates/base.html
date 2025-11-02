@@ -1,0 +1,111 @@
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Isaac Ngure | Portfolio{% endblock %}</title>
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+
+  <!-- ===== Fonts & Icons ===== -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/a076d05399.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- ===== Meta ===== -->
+  <meta
+    name="description"
+    content="Isaac Ngure – Android Developer & UI/UX Enthusiast. Explore my portfolio, apps, and projects."
+  />
+</head>
+
+<body>
+  <!-- ===== HEADER / NAVBAR =====-->
+<header>
+  <div class="logo">
+    <h1><span class="gradient-text">Isaac</span> Dev</h1>
+  </div>
+
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">
+    <i class="fas fa-bars"></i>
+  </label>
+
+  <nav class="navbar">
+    <a href="{% url 'index' %}" class="active">Home</a>
+    <a href="{% url 'skills' %}">Skills</a>
+    <a href="{% url 'projects' %}">Projects</a>
+    <a href="{% url 'resume' %}">Resume</a>
+    <a href="{% url 'contact' %}">Contact</a>
+  </nav>
+</header>
+
+
+  <!-- ===== HERO SECTION (Optional for homepage) ===== -->
+  {% block hero %}
+  <section class="hero">
+    <div class="background-glow"></div>
+    <div class="hero-card">
+      <h1>Hello, I’m <span class="gradient-text">Isaac Ngure</span></h1>
+      <h2>I build <span class="typed-text"></span></h2>
+      <p>Android Developer | UI/UX Enthusiast | Passionate about crafting digital experiences.</p>
+      <a href="{% url 'projects' %}" class="btn">View My Work</a>
+    </div>
+  </section>
+  {% endblock %}
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Isaac Ngure | Crafted with ❤️ using Django</p>
+    <div class="socials">
+      <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"
+        ><i class="fab fa-github"></i
+      ></a>
+      <a href="https://www.linkedin.com/in/yourusername/" target="_blank" aria-label="LinkedIn"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Auto-close mobile menu after link click
+    document.querySelectorAll(".navbar a").forEach((link) => {
+      link.addEventListener("click", () => {
+        document.getElementById("menu-toggle").checked = false;
+      });
+    });
+  </script>
+
+  <!-- Typed.js Animation -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const typedElement = document.querySelector(".typed-text");
+      if (typedElement) {
+        new Typed(".typed-text", {
+          strings: ["Android Apps", "Digital Experiences", "Creative Interfaces"],
+          typeSpeed: 70,
+          backSpeed: 50,
+          loop: true,
+        });
+      }
+    });
+  </script>
+</body>
+</html>
