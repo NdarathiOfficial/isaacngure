@@ -681,3 +681,69 @@ footer {
 
 
 }
+/* ======== ADDITIONAL RESPONSIVE STYLES ======== */
+
+/* ===== VIEWPORT NOTE =====
+   Ensure in base.html head you have:
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+*/
+
+/* Tablets */
+@media (max-width: 992px) {
+  header {
+    width: 98%;
+    padding: 1rem 2%;
+  }
+
+  .hero h1 { font-size: 2.5rem; }
+  .hero h2 { font-size: 1.5rem; }
+  .hero-card { padding: 2.5rem 3rem; }
+  nav.navbar { gap: 1rem; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu-icon { display: block; }
+
+  nav.navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    display: none; /* toggle with JS */
+  }
+
+  .hero h1 { font-size: 2.2rem; }
+  .hero h2 { font-size: 1.3rem; }
+  .hero-card { padding: 2rem; }
+
+  .skills-wrapper,
+  .contact-wrapper,
+  .projects-grid { grid-template-columns: 1fr; }
+
+  .projects-hero h1,
+  .page-hero h1 { font-size: 2rem; }
+  .projects-hero p,
+  .page-hero p { font-size: 1rem; }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  header .logo h1 { font-size: 1.4rem; }
+  .btn, .send-btn { padding: 0.6rem 1.5rem; font-size: 0.95rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero h2 { font-size: 1.1rem; }
+  .skill-item h3 { font-size: 1.2rem; }
+  .resume-section { padding: 2rem 1rem; }
+}
+
+/* Flexible images and cards */
+img, .hero-card, .project-card, .skill-item {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optional: smooth mobile menu toggle class */
+nav.navbar.show {
+  display: flex;
+}
+
