@@ -101,10 +101,43 @@ nav.navbar a.active {
   font-size: 1.8rem;
   color: var(--text-light);
   cursor: pointer;
+  z-index: 1100;
+  position: relative;
 }
 
 #menu-toggle {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  nav.navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    display: none;
+    width: 100%;
+    background: var(--nav-blur);
+    backdrop-filter: blur(15px);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem 3%;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  #menu-toggle:checked + .menu-icon + nav.navbar {
+    display: flex;
+  }
+
+  nav.navbar a {
+    width: 100%;
+    padding: 0.8rem 0;
+  }
 }
 
 /* ======== HERO SECTION ======== */
@@ -537,11 +570,25 @@ nav.navbar a.active {
 
 footer {
   text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
+  color: #bbb;
 }
 
-/* ========== PROJECTS PAGE STYLES ========== */
+footer .socials a {
+  margin: 0 0.5rem;
+  font-size: 1.4rem;
+  color: #ccc;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
 
-/* HERO SECTION */
+footer .socials a:hover {
+  color: var(--text-accent);
+  transform: scale(1.2);
+}
+
+/* ======== PROJECTS PAGE ======== */
 .projects-hero {
   text-align: center;
   padding: 8rem 1rem 5rem;
@@ -561,7 +608,6 @@ footer {
   margin: 0 auto;
 }
 
-/* PROJECTS GRID */
 .projects-section {
   padding: 4rem 2rem 7rem;
   display: flex;
@@ -577,7 +623,6 @@ footer {
   width: 100%;
 }
 
-/* PROJECT CARD */
 .project-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -588,7 +633,16 @@ footer {
   text-align: left;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
 }
+
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+.project-card:nth-child(4) { animation-delay: 0.8s; }
+.project-card:nth-child(5) { animation-delay: 1s; }
 
 .project-card:hover {
   transform: translateY(-6px);
@@ -615,7 +669,6 @@ footer {
   font-size: 0.98rem;
 }
 
-/* TECH STACK TAGS */
 .tech-stack {
   margin-top: 1.2rem;
   display: flex;
@@ -638,33 +691,12 @@ footer {
   color: #fff;
 }
 
-/* SCROLL REVEAL EFFECT */
-.project-card {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s ease forwards;
-}
-
-.project-card:nth-child(1) { animation-delay: 0.2s; }
-.project-card:nth-child(2) { animation-delay: 0.4s; }
-.project-card:nth-child(3) { animation-delay: 0.6s; }
-.project-card:nth-child(4) { animation-delay: 0.8s; }
-.project-card:nth-child(5) { animation-delay: 1s; }
-
 @keyframes fadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-/* RESPONSIVE TWEAKS */
-@media (max-width: 768px) {
-  .projects-hero h1 { font-size: 2.2rem; }
-  .project-card { padding: 2rem 1.5rem; }
-}
-
-
 
 /* ======== ANIMATIONS ======== */
 @keyframes fadeIn {
@@ -676,19 +708,9 @@ footer {
     opacity: 1;
     transform: translateY(0);
   }
-
-
-
-
 }
-/* ======== ADDITIONAL RESPONSIVE STYLES ======== */
 
-/* ===== VIEWPORT NOTE =====
-   Ensure in base.html head you have:
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-*/
-
-/* Tablets */
+/* ======== RESPONSIVE TWEAKS ======== */
 @media (max-width: 992px) {
   header {
     width: 98%;
@@ -701,17 +723,7 @@ footer {
   nav.navbar { gap: 1rem; }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-  .menu-icon { display: block; }
-
-  nav.navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    display: none; /* toggle with JS */
-  }
-
   .hero h1 { font-size: 2.2rem; }
   .hero h2 { font-size: 1.3rem; }
   .hero-card { padding: 2rem; }
@@ -726,7 +738,6 @@ footer {
   .page-hero p { font-size: 1rem; }
 }
 
-/* Small Mobile */
 @media (max-width: 480px) {
   header .logo h1 { font-size: 1.4rem; }
   .btn, .send-btn { padding: 0.6rem 1.5rem; font-size: 0.95rem; }
@@ -736,14 +747,11 @@ footer {
   .resume-section { padding: 2rem 1rem; }
 }
 
-/* Flexible images and cards */
 img, .hero-card, .project-card, .skill-item {
   max-width: 100%;
   height: auto;
 }
 
-/* Optional: smooth mobile menu toggle class */
 nav.navbar.show {
   display: flex;
 }
-
