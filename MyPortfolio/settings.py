@@ -118,13 +118,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # -------------------------
 # EMAIL SETTINGS (SendGrid via Anymail)
 # -------------------------
-EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-ANYMAIL = {
-    "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": os.environ.get("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"),
-}
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "apikey"     # literally the word: apikey
+EMAIL_HOST_PASSWORD = "<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>"
+DEFAULT_FROM_EMAIL = "ndarathiofficial@gmail.com"
 
-DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "Isaac Ngure ndarathiofficial@gmail.com>")
-
-# Optional: recipient for testing contact form emails
-CONTACT_RECEIVER_EMAIL = os.environ.get("CONTACT_RECEIVER_EMAIL", "ndarathiofficial@gmail.com")
