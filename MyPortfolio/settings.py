@@ -121,7 +121,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
 ANYMAIL = {
-    "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": os.environ.get("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"),
+    "SENDGRID-API-KEY": os.environ.get("SENDGRID-API-KEY"),
 }
 
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "ndarathiofficial@gmail.com>")
