@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import os
+
+
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -34,8 +36,8 @@ def contact_view(request):
             send_mail(
                 subject=f"New message from {name}",
                 message=f"From: {email}\n\nMessage:\n{message}",
-                from_email='yourwebsite@gmail.com',
-                recipient_list=['ndarathiofficial@gmail.com'],
+                from_email=None,  # uses DEFAULT_FROM_EMAIL
+                recipient_list=[os.environ.get("CONTACT_RECEIVER_EMAIL", "ndarathiofficial@gmail.com")],
                 fail_silently=False,
             )
 

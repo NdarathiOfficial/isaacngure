@@ -18,6 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY from environment variable
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-default-key-for-local')
 
+
 # Debug mode from environment variable (default False)
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
@@ -121,10 +122,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
 ANYMAIL = {
-    "SENDGRID-API-KEY": os.environ.get("SENDGRID-API-KEY"),
+    "SENDGRID_API_KEY": os.environ.get("SENDGRID_API_KEY"),
 }
 
-DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "ndarathiofficial@gmail.com>")
+DEFAULT_FROM_EMAIL = os.environ.get(
+    "DEFAULT_FROM_EMAIL", "Isaac Portfolio <ndarathiofficial@gmail.com>"
+)
 
-# Optional: recipient for testing contact form emails
-CONTACT_RECEIVER_EMAIL = os.environ.get("CONTACT_RECEIVER_EMAIL", "ndarathiofficial@gmail.com")
+CONTACT_RECEIVER_EMAIL = os.environ.get(
+    "CONTACT_RECEIVER_EMAIL", "ndarathiofficial@gmail.com"
+)
+
