@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ndarathi',
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -139,9 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ndarathiofficial@gmail.com'
-EMAIL_HOST_PASSWORD = 'cvus dsrz dzuu bsmi'
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+
+ANYMAIL = {
+    "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": os.environ.get("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"),
+}
+
+DEFAULT_FROM_EMAIL = "Isaac Ngure <ndarathiofficial@gmail.com>"
+
