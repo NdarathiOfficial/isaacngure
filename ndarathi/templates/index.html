@@ -2,22 +2,73 @@
 {% block title %}Home | Isaac Ngure{% endblock %}
 
 {% block content %}
-<!--<section class="hero">-->
-<!--  <div class="background-orb"></div>-->
-<!--  <div class="hero-card" data-aos="fade-up">-->
-<!--    <h1>Hello, I’m <span class="gradient-text">Isaac Ngure</span></h1>-->
-<!--    <h2>I build <span class="typed-text"></span></h2>-->
-<!--    <p>Android Developer • UI/UX Enthusiast • Tech Innovator</p>-->
-<!--    <a href="{% url 'projects' %}" class="btn">✨ Explore My Work</a>-->
-<!--  </div>-->
-<!--</section>-->
 
-<!--<section class="intro" data-aos="fade-up" data-aos-delay="300">-->
-<!--  <h2>Who Am I?</h2>-->
-<!--  <p>-->
-<!--    I’m a passionate developer who brings ideas to life through code —-->
-<!--    crafting elegant Android apps and digital experiences that make life-->
-<!--    simpler and more beautiful.-->
-<!--  </p>-->
-<!--</section>-->
+<!-- ===== ABOUT / INTRO SECTION ===== -->
+<section class="intro-section" data-aos="fade-up" data-aos-duration="900">
+  <h2 class="section-title">Who Am I?</h2>
+  <p class="section-text">
+    I’m a passionate Software Developer who transforms ideas into reality through clean,
+    efficient, and visually stunning digital experiences. I specialize in
+    <span class="highlight">Android development</span> and
+    <span class="highlight">modern web applications</span>, blending creativity with technical precision.
+  </p>
+</section>
+
+<!-- ===== SKILLS PREVIEW ===== -->
+<section class="skills-preview" data-aos="fade-up" data-aos-delay="200">
+  <h2 class="section-title">What I Do</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+      <i class="fas fa-mobile-alt skill-icon"></i>
+      <h3>Android Development</h3>
+      <p>Building fast, modern, and user-focused Android apps using Kotlin + Jetpack Compose.</p>
+    </div>
+
+    <div class="skill-card" data-aos="zoom-in" data-aos-delay="450">
+      <i class="fas fa-code skill-icon"></i>
+      <h3>Web Development</h3>
+      <p>Creating responsive and interactive websites with Django, HTML, CSS & JavaScript.</p>
+    </div>
+
+    <div class="skill-card" data-aos="zoom-in" data-aos-delay="600">
+      <i class="fas fa-pencil-ruler skill-icon"></i>
+      <h3>UI / UX Design</h3>
+      <p>Designing intuitive interfaces that enhance usability and deliver powerful experiences.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED PROJECTS ===== -->
+<section class="featured-projects" data-aos="fade-up" data-aos-delay="300">
+  <h2 class="section-title">Featured Work</h2>
+
+  <div class="project-list">
+
+    <div class="project-card" data-aos="fade-right" data-aos-delay="400">
+      <div class="project-info">
+        <h3>Hospital Management App</h3>
+        <p>An advanced Jetpack Compose application for doctors to manage patients, update records, and track real-time data.</p>
+        <a href="{% url 'projects' %}" class="btn-sm">View Details →</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-aos="fade-left" data-aos-delay="500">
+      <div class="project-info">
+        <h3>Portfolio Website v2</h3>
+        <p>Your current modern interactive Django portfolio with animations and clean UI.</p>
+        <a href="{% url 'projects' %}" class="btn-sm">View Details →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CALL TO ACTION ===== -->
+<section class="cta-section" data-aos="zoom-in" data-aos-delay="400">
+  <h2>Let’s Build Something Amazing</h2>
+  <p>Have an idea, app concept, or project? I’m ready when you are.</p>
+  <a href="{% url 'contact' %}" class="btn cta-btn">Contact Me</a>
+</section>
+
 {% endblock %}

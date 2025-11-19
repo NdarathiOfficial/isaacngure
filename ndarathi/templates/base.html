@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -20,36 +19,17 @@
 
   <!-- ===== Fonts & Icons ===== -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-TmE3i9lP20n8fDXn+jsTpjJzAqXCvFz7C0vB8tCbHcYTRxgJjsReBuhzJq1tV1GVYeQ0ZTFm7l97yk9U+YBgHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ===== STRUCTURED DATA FOR GOOGLE ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Isaac Ndarathi Ngure",
-    "url": "https://yourwebsite.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/isaac-ndarathi-ngure",
-      "https://github.com/NdarathiOffficial",
-      "https://twitter.com/ndaraofficial"
-    ],
-    "jobTitle": "Software Developer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Isaac Ngure Dev"
-    },
-    "image": "https://isaacngure.onrender.com/static/assets/images/profile.jpg",
-    "description": "Isaac Ndarathi Ngure – Software Developer specializing in Android & Web Apps, UI/UX Enthusiast, and digital project creator."
-  }
-  </script>
-  <meta name="google-site-verification" content="-kYVEdeMXjrqRGYmPHMkAveB5D0jAMHrNAqxL0Dy0Hw" />
+  <!-- ===== AOS ANIMATION LIBRARY ===== -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
 </head>
 
-<body>
-  <!-- ===== HEADER / NAVBAR =====-->
-  <header>
+<body class="fade-page">
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header data-aos="fade-down" data-aos-duration="800">
     <div class="logo">
       <h1><span class="gradient-text">Isaac</span> Dev</h1>
     </div>
@@ -60,7 +40,7 @@
     </label>
 
     <nav class="navbar">
-      <a href="{% url 'index' %}" class="active">Home</a>
+      <a href="{% url 'index' %}">Home</a>
       <a href="{% url 'skills' %}">Skills</a>
       <a href="{% url 'projects' %}">Projects</a>
       <a href="{% url 'resume' %}">Resume</a>
@@ -68,45 +48,47 @@
     </nav>
   </header>
 
-  <!-- ===== HERO SECTION ===== -->
+  <!-- ===== HERO ===== -->
   {% block hero %}
-  <section class="hero">
+  <section class="hero" data-aos="zoom-in" data-aos-duration="900">
     <div class="background-glow"></div>
     <div class="hero-card">
       <h1>Hello, I’m <span class="gradient-text">Isaac Ndarathi Ngure</span></h1>
       <h2>I build <span class="typed-text"></span></h2>
       <p>Software Developer | Android & Web Apps Creator | UI/UX Enthusiast</p>
-      <a href="{% url 'projects' %}" class="btn">View My Work</a>
+      <a href="{% url 'projects' %}" class="btn" data-aos="fade-up" data-aos-delay="400">View My Work</a>
     </div>
   </section>
   {% endblock %}
 
-  <!-- ===== MAIN CONTENT ===== -->
-  <main>
+  <!-- ===== CONTENT ===== -->
+  <main data-aos="fade-up" data-aos-duration="700">
     {% block content %}
     {% endblock %}
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer>
-  <p>© 2025 Isaac Ndarathi Ngure | Crafted with ❤️ using Django</p>
-  <div class="socials">
-    <a href="https://github.com/NdarathiOfficial" target="_blank">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/isaac-ndarathi-ngure/" target="_blank">
-      <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="https://twitter.com/ndaraofficial" target="_blank">
-      <i class="fab fa-twitter"></i>
-    </a>
-  </div>
-</footer>
+  <footer data-aos="fade-up" data-aos-duration="700">
+    <p>© 2025 Isaac Ndarathi Ngure | Crafted with ❤️ using Django</p>
+
+    <div class="socials">
+      <a href="https://github.com/NdarathiOfficial" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/isaac-ndarathi-ngure/" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://twitter.com/ndaraofficial" target="_blank">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+  </footer>
 
 
-  <!-- ===== SCRIPTS ===== -->
+  <!-- ===== ANIMATION SCRIPTS ===== -->
+
+  <!-- Mobile Menu -->
   <script>
-    // Mobile menu toggle
     const menuIcon = document.querySelector('.menu-icon');
     const menuToggle = document.getElementById('menu-toggle');
     const navbar = document.querySelector('nav.navbar');
@@ -115,7 +97,6 @@
       navbar.classList.toggle('show');
     });
 
-    // Auto-close mobile menu after link click
     document.querySelectorAll('.navbar a').forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.checked = false;
@@ -124,20 +105,43 @@
     });
   </script>
 
-  <!-- Typed.js Animation -->
+  <!-- Typed.js text animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const typedElement = document.querySelector(".typed-text");
-      if (typedElement) {
-        new Typed(".typed-text", {
-          strings: ["Android Apps", "Web Apps", "Digital Experiences"],
-          typeSpeed: 70,
-          backSpeed: 50,
-          loop: true,
-        });
-      }
+    new Typed(".typed-text", {
+      strings: ["Android Apps", "Web Apps", "Digital Experiences"],
+      typeSpeed: 70,
+      backSpeed: 50,
+      loop: true,
     });
   </script>
+
+  <!-- AOS Init -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+  </script>
+
+  <!-- Page Fade Transition -->
+  <style>
+    .fade-page {
+      opacity: 0;
+      transition: opacity .6s ease-out;
+    }
+    .fade-page.loaded {
+      opacity: 1;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.body.classList.add("loaded");
+    });
+  </script>
+
 </body>
 </html>

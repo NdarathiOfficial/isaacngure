@@ -755,3 +755,89 @@ img, .hero-card, .project-card, .skill-item {
 nav.navbar.show {
   display: flex;
 }
+
+/* ===== Home Page Sections ===== */
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.section-text {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.highlight {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+/* ===== Skills Grid ===== */
+.skills-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-top: 2rem;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.skill-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-accent);
+}
+
+/* ===== Projects ===== */
+.project-card {
+  padding: 1.5rem;
+  margin: 1.2rem 0;
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  background: var(--text-accent);
+  color: #0a0a0f;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-weight: 600;
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #111122, #1d1d2b);
+  border-radius: 20px;
+}
+
+.cta-btn {
+  margin-top: 1.2rem;
+}
