@@ -87,6 +87,8 @@
             <a href="index.html" class="text-2xl font-bold text-white tracking-tight group">
                 <span class="inline-block transform group-hover:-rotate-12 transition-transform duration-300">I</span>saac<span class="text-primary-400">.dev</span>
             </a>
+
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="{% url 'index' %}" class="text-white hover:text-primary-400 transition-colors relative group">Home</a>
                 <a href="{% url 'about' %}" class="text-white hover:text-primary-400 transition-colors relative group">About</a>
@@ -96,12 +98,28 @@
                 <a href="{% url 'resume' %}" class="text-white hover:text-primary-400 transition-colors relative group">Resume</a>
                 <a href="{% url 'contact' %}" class="text-white hover:text-primary-400 transition-colors relative group">Contact</a>
             </div>
-            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-950/95 backdrop-blur-xl border-b border-white/5 absolute w-full left-0 top-full transition-all duration-300">
+            <div class="px-6 py-4 space-y-4 text-center">
+                <a href="{% url 'index' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Home</a>
+                <a href="{% url 'about' %}" class="block text-white hover:text-primary-400 transition-colors py-2">About</a>
+                <a href="{% url 'projects' %}" class="block text-primary-400 font-bold py-2 bg-primary-500/10 rounded-xl">Projects</a>
+                <a href="{% url 'skills' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Skills</a>
+                <a href="{% url 'resume' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Resume</a>
+                <a href="{% url 'contact' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Contact</a>
+            </div>
         </div>
     </nav>
 
     <main class="relative z-10 pt-32 pb-20 px-6">
-        
+
         <!-- ===== HERO HEADER ===== -->
         <div class="text-center max-w-4xl mx-auto mb-20 animate-fade-in-up">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
@@ -127,12 +145,12 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary-500/10 text-primary-300 border border-primary-500/20">Android App</span>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">BimaDrive</h3>
                     <p class="text-slate-400 mb-6 flex-grow">
                         A motor vehicle insurance app simplifying policy management, renewals, and claims — powered by robust secure APIs.
                     </p>
-                    
+
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Jetpack Compose</span>
@@ -153,12 +171,12 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-500/10 text-green-300 border border-green-500/20">Android App</span>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">MpesaDrive</h3>
                     <p class="text-slate-400 mb-6 flex-grow">
                         Kenya’s ride-hailing app integrating M-Pesa for secure, real-time payments between riders and drivers.
                     </p>
-                    
+
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Jetpack Compose</span>
@@ -179,12 +197,12 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-bold bg-secondary-500/10 text-secondary-300 border border-secondary-500/20">Web App</span>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-secondary-400 transition-colors">BimaDrive Web</h3>
                     <p class="text-slate-400 mb-6 flex-grow">
                         A companion platform where users can manage their insurance policies, renew coverage, and access services online.
                     </p>
-                    
+
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Django</span>
@@ -205,12 +223,12 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-500/10 text-pink-300 border border-pink-500/20">Web App</span>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors">MpesaDrive Dashboard</h3>
                     <p class="text-slate-400 mb-6 flex-grow">
                         A web dashboard for riders and drivers to manage trips, payments, and support through a responsive interface.
                     </p>
-                    
+
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Django</span>
@@ -231,12 +249,12 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-white border border-white/20">Personal</span>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">Isaac Ngure Portfolio</h3>
                     <p class="text-slate-400 mb-6 flex-grow">
                         My digital identity — crafted to highlight creativity, clarity, and a seamless design aesthetic using modern tech.
                     </p>
-                    
+
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Django</span>
@@ -265,10 +283,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const navbar = document.getElementById('navbar');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) navbar.classList.add('shadow-lg');
                 else navbar.classList.remove('shadow-lg');
             });
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
         });
     </script>
 </body>

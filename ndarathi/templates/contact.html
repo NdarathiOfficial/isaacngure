@@ -35,7 +35,6 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-
         .glass-panel {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(16px);
@@ -44,7 +43,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         .text-gradient-move {
             background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc, #38bdf8);
             background-size: 300% auto;
@@ -52,7 +50,6 @@
             -webkit-text-fill-color: transparent;
             animation: shimmer 5s linear infinite reverse;
         }
-
         .bg-grid-modern {
             background-size: 50px 50px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -104,6 +101,8 @@
             <a href="index.html" class="text-2xl font-bold text-white tracking-tight group">
                 <span class="inline-block transform group-hover:-rotate-12 transition-transform duration-300">I</span>saac<span class="text-primary-400">.dev</span>
             </a>
+
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="{% url 'index' %}" class="px-5 py-2 rounded-full border border-primary-400/50 bg-primary-500/10 text-primary-400">Home</a>
                 <a href="{% url 'about' %}" class="text-white hover:text-primary-400 transition-colors relative group">About</a>
@@ -113,7 +112,23 @@
                           <!-- Active: Contact -->
                 <a href="{% url 'contact' %}" class="px-5 py-2 rounded-full border border-primary-400/50 bg-primary-500/10 text-primary-400">Contact</a>
             </div>
-            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-950/95 backdrop-blur-xl border-b border-white/5 absolute w-full left-0 top-full transition-all duration-300">
+            <div class="px-6 py-4 space-y-4 text-center">
+                <a href="{% url 'index' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Home</a>
+                <a href="{% url 'about' %}" class="block text-white hover:text-primary-400 transition-colors py-2">About</a>
+                <a href="{% url 'projects' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Projects</a>
+                <a href="{% url 'skills' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Skills</a>
+                <a href="{% url 'resume' %}" class="block text-white hover:text-primary-400 transition-colors py-2">Resume</a>
+                <a href="{% url 'contact' %}" class="block text-primary-400 font-bold py-2 bg-primary-500/10 rounded-xl">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -189,5 +204,24 @@
             <p class="text-slate-500 text-sm mt-2">© 2026 Isaac Ngure. Crafted with ❤️.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('shadow-lg');
+                else navbar.classList.remove('shadow-lg');
+            });
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
