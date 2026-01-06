@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
 from .forms import ContactForm
+from django.conf import settings
 
 def index(request):
     return render(request, 'index.html')
@@ -32,13 +33,11 @@ def contact_view(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
-            # (Optional) send email
             send_mail(
                 subject=f"New message from {name}",
-                message=f"From: {email}\n\nMessage:\n{message}",
-                from_email=None,  # uses DEFAULT_FROM_EMAIL
-                recipient_list=[os.environ.get("CONTACT_RECEIVER_EMAIL", "ndarathiofficial@gmail.com")],
-                fail_silently=False,
+                message=f"Sender: {email}\n\n{message}",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.CONTACT_RECEIVER_EMAIL],
             )
 
             messages.success(request, "Thank you for reaching out! I’ll get back to you soon.")

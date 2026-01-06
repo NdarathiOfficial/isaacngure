@@ -1,74 +1,275 @@
-{% extends "base.html" %}
-{% block title %}Projects | Isaac Ngure{% endblock %}
+{% load static %}
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Isaac Ngure</title>
+    <!-- Tailwind and Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+                        primary: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+                        secondary: { 400: '#a78bfa', 500: '#8b5cf6' }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.2)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.8)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
+                        pulseGlow: { '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(56, 189, 248, 0.5)' }, '50%': { opacity: '.8', boxShadow: '0 0 10px rgba(56, 189, 248, 0.2)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-panel:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        }
+        .text-gradient-move {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc, #38bdf8);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite reverse;
+        }
+        .bg-grid-modern {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-slate-300 font-sans selection:bg-primary-500 selection:text-white overflow-x-hidden antialiased">
 
-{% block hero %}
-<section class="projects-hero">
-  <h1>My <span class="gradient-text">Projects</span></h1>
-  <p>Building meaningful digital solutions that merge innovation, design, and technology.</p>
-</section>
-{% endblock %}
-
-{% block content %}
-
-
-<section class="projects-section">
-  <div class="projects-grid">
-    <!-- ===== APP PROJECTS ===== -->
-    <div class="project-card">
-      <h2>BimaDrive</h2>
-      <p class="category">Android App</p>
-      <p>
-        A motor vehicle insurance app simplifying policy management, renewals, and claims — powered by Jetpack Compose, Firebase, and M-Pesa API.
-      </p>
-      <div class="tech-stack">
-        <span>Jetpack Compose</span><span>Firebase</span><span>M-Pesa API</span>
-      </div>
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+        <div class="absolute inset-0 bg-grid-modern opacity-60"></div>
     </div>
 
-    <div class="project-card">
-      <h2>MpesaDrive</h2>
-      <p class="category">Android App</p>
-      <p>
-        Kenya’s ride-hailing app integrating M-Pesa for secure, real-time payments between riders and drivers.
-      </p>
-      <div class="tech-stack">
-        <span>Jetpack Compose</span><span>Firebase</span><span>M-Pesa API</span>
-      </div>
-    </div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 bg-dark-950/70 backdrop-blur-xl border-b border-white/5"></div>
+        <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white tracking-tight group">
+                <span class="inline-block transform group-hover:-rotate-12 transition-transform duration-300">I</span>saac<span class="text-primary-400">.dev</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="{% url 'index' %}" class="text-white hover:text-primary-400 transition-colors relative group">Home</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-primary-400 transition-colors relative group">About</a>
+                <!-- Active: Projects -->
+                <a href="{% url 'projects' %}" class="px-5 py-2 rounded-full border border-primary-400/50 bg-primary-500/10 text-primary-400">Projects</a>
+                <a href="{% url 'skills' %}" class="text-white hover:text-primary-400 transition-colors relative group">Skills</a>
+                <a href="{% url 'resume' %}" class="text-white hover:text-primary-400 transition-colors relative group">Resume</a>
+                <a href="{% url 'contact' %}" class="text-white hover:text-primary-400 transition-colors relative group">Contact</a>
+            </div>
+            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
 
-    <!-- ===== WEBSITES ===== -->
-    <div class="project-card">
-      <h2>BimaDrive Website</h2>
-      <p class="category">Web App</p>
-      <p>
-        A companion platform where users can manage their insurance policies, renew coverage, and access services online.
-      </p>
-      <div class="tech-stack">
-        <span>Django</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
-      </div>
-    </div>
+    <main class="relative z-10 pt-32 pb-20 px-6">
+        
+        <!-- ===== HERO HEADER ===== -->
+        <div class="text-center max-w-4xl mx-auto mb-20 animate-fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
+                <span class="text-xs font-semibold text-primary-400 tracking-wide uppercase">Portfolio</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                My <span class="text-gradient-move">Projects</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Building meaningful digital solutions that merge innovation, design, and technology.
+            </p>
+        </div>
 
-    <div class="project-card">
-      <h2>MpesaDrive Website</h2>
-      <p class="category">Web App</p>
-      <p>
-        A web dashboard for riders and drivers to manage trips, payments, and support through a responsive interface.
-      </p>
-      <div class="tech-stack">
-        <span>Django</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
-      </div>
-    </div>
+        <!-- ===== PROJECTS GRID ===== -->
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    <div class="project-card">
-      <h2>Isaac Ngure Portfolio</h2>
-      <p class="category">Personal Website</p>
-      <p>
-        My digital identity — crafted to highlight creativity, clarity, and a seamless design aesthetic.
-      </p>
-      <div class="tech-stack">
-        <span>Django</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
-      </div>
-    </div>
-  </div>
-</section>
-{% endblock %}
+                <!-- 1. BimaDrive (Android) -->
+                <div class="glass-panel p-8 rounded-3xl flex flex-col h-full group animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-primary-500/10 rounded-xl flex items-center justify-center text-primary-400 border border-primary-500/20 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-android text-2xl"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary-500/10 text-primary-300 border border-primary-500/20">Android App</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">BimaDrive</h3>
+                    <p class="text-slate-400 mb-6 flex-grow">
+                        A motor vehicle insurance app simplifying policy management, renewals, and claims — powered by robust secure APIs.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Jetpack Compose</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Firebase</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">M-Pesa API</span>
+                        </div>
+                        <a href="https://bimadrive-web.onrender.com" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold transition-colors border border-white/5">
+                            View Case Study
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. MpesaDrive (Android) -->
+                <div class="glass-panel p-8 rounded-3xl flex flex-col h-full group animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center text-green-400 border border-green-500/20 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-car text-2xl"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-500/10 text-green-300 border border-green-500/20">Android App</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">MpesaDrive</h3>
+                    <p class="text-slate-400 mb-6 flex-grow">
+                        Kenya’s ride-hailing app integrating M-Pesa for secure, real-time payments between riders and drivers.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Jetpack Compose</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Google Maps</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">M-Pesa API</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold transition-colors border border-white/5">
+                            View Case Study
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. BimaDrive Website (Web) -->
+                <div class="glass-panel p-8 rounded-3xl flex flex-col h-full group animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-secondary-500/10 rounded-xl flex items-center justify-center text-secondary-400 border border-secondary-500/20 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-globe text-2xl"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-secondary-500/10 text-secondary-300 border border-secondary-500/20">Web App</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-secondary-400 transition-colors">BimaDrive Web</h3>
+                    <p class="text-slate-400 mb-6 flex-grow">
+                        A companion platform where users can manage their insurance policies, renew coverage, and access services online.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Django</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">PostgreSQL</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Bootstrap</span>
+                        </div>
+                        <a href="https://bimadrive-web.onrender.com" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold transition-colors border border-white/5">
+                            Visit Site
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. MpesaDrive Website (Web) -->
+                <div class="glass-panel p-8 rounded-3xl flex flex-col h-full group animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center text-pink-400 border border-pink-500/20 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-laptop-code text-2xl"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-500/10 text-pink-300 border border-pink-500/20">Web App</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors">MpesaDrive Dashboard</h3>
+                    <p class="text-slate-400 mb-6 flex-grow">
+                        A web dashboard for riders and drivers to manage trips, payments, and support through a responsive interface.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Django</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Chart.js</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">HTML/CSS</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold transition-colors border border-white/5">
+                            Visit Site
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Portfolio (Personal) -->
+                <div class="glass-panel p-8 rounded-3xl flex flex-col h-full group animate-fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white border border-white/20 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user-circle text-2xl"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-white border border-white/20">Personal</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">Isaac Ngure Portfolio</h3>
+                    <p class="text-slate-400 mb-6 flex-grow">
+                        My digital identity — crafted to highlight creativity, clarity, and a seamless design aesthetic using modern tech.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Django</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">Tailwind</span>
+                            <span class="text-xs font-medium px-2 py-1 bg-white/5 rounded text-slate-400">CSS3</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold transition-colors border border-white/5">
+                            You Are Here
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-dark-950 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="text-xl font-bold text-white">Isaac<span class="text-primary-400">.dev</span></span>
+            <p class="text-slate-500 text-sm mt-2">© 2026 Isaac Ngure. Crafted with ❤️.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('shadow-lg');
+                else navbar.classList.remove('shadow-lg');
+            });
+        });
+    </script>
+</body>
+</html>

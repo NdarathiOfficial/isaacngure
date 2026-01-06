@@ -1,106 +1,405 @@
-{% extends "base.html" %}
 {% load static %}
-{% block title %}Resume | Isaac Ngure{% endblock %}
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Isaac Ngure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+                        primary: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+                        secondary: { 400: '#a78bfa', 500: '#8b5cf6' }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'blob': 'blob 10s infinite',
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.2)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.8)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
+                        pulseGlow: { '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(56, 189, 248, 0.5)' }, '50%': { opacity: '.8', boxShadow: '0 0 10px rgba(56, 189, 248, 0.2)' } },
+                        shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-panel:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 30px -10px rgba(56, 189, 248, 0.15);
+        }
+        .text-gradient-move {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc, #38bdf8);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite reverse;
+        }
+        .bg-grid-modern {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-slate-300 font-sans selection:bg-primary-500 selection:text-white overflow-x-hidden antialiased">
 
-{% block hero %}
-<section class="page-hero">
-  <h1>My <span class="gradient-text">Resume</span></h1>
-  <p>Merging creativity with technology to design intelligent, meaningful, and beautifully built digital experiences.</p>
-</section>
-{% endblock %}
-
-{% block content %}
-<section class="resume-section">
-  <div class="resume-wrapper">
-
-    <!-- ====== LEFT CARD ====== -->
-    <div class="resume-info-card">
-      <h2>Profile</h2>
-      <div class="resume-header">
-        <h3>Isaac Ndarathi Ngure</h3>
-        <p class="subtitle">Creative & Technical Full Stack Developer</p>
-        <div class="resume-contact">
-          <p>📍 Nairobi, Kenya</p>
-          <p>📧 ndarathiofficial@gmail.com</p>
-          <p>📞 +254 713 224 915</p>
-        </div>
-      </div>
-
-      <h2>Professional Summary</h2>
-      <p>
-        Innovative and detail-oriented Full Stack Developer passionate about crafting user-focused
-        digital solutions. Experienced in Android and web development using modern frameworks and
-        design systems. Combines creativity, analytical thinking, and clean coding principles to
-        build scalable, performant, and aesthetically refined applications that connect people and technology.
-      </p>
-
-      <h2>Education</h2>
-      <ul class="resume-list">
-        <li>
-          <strong>Bachelor of Science in Computer Science</strong> (Ongoing) – Dedan Kimathi University of Technology, Nyeri, Kenya
-        </li>
-        <li>
-          <strong>MIT xPro Course</strong> – Full Stack Development, E-Mobilis Institute of Technology
-        </li>
-        <li>
-          <strong>Kenya Certificate of Secondary Education (KCSE)</strong> – Baricho High School
-        </li>
-      </ul>
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute inset-0 bg-grid-modern opacity-60"></div>
     </div>
 
-    <!-- ====== RIGHT CARD ====== -->
-    <div class="resume-experience-card">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>Freelance Android Developer</h3>
-          <span class="timeline-date">2025 – Present</span>
-          <p>
-            Designed and built Android applications using Kotlin and Jetpack Compose.
-            Integrated Firebase for authentication, cloud storage, and real-time data handling.
-            Focused on crafting seamless user experiences with strong performance and security standards.
-          </p>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 bg-dark-950/70 backdrop-blur-xl border-b border-white/5"></div>
+        <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white tracking-tight group">
+                <span class="inline-block transform group-hover:-rotate-12 transition-transform duration-300">I</span>saac<span class="text-primary-400">.dev</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="{% url 'index' %}" class="text-white hover:text-primary-400 transition-colors relative group">Home</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-primary-400 transition-colors relative group">About</a>
+                <a href="{% url 'projects' %}" class="text-white hover:text-primary-400 transition-colors relative group">Projects</a>
+                <a href="{% url 'skills' %}" class="text-white hover:text-primary-400 transition-colors relative group">Skills</a>
+                <!-- Active: Resume -->
+                <a href="{% url 'resume' %}" class="px-5 py-2 rounded-full border border-primary-400/50 bg-primary-500/10 text-primary-400">Resume</a>
+                <a href="{% url 'contact' %}" class="text-white hover:text-primary-400 transition-colors relative group">Contact</a>
+
+            </div>
+            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20 px-6">
+
+        <!-- ===== HERO HEADER ===== -->
+        <div class="text-center max-w-4xl mx-auto mb-16 animate-fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
+                <span class="text-xs font-semibold text-secondary-400 tracking-wide uppercase">Curriculum Vitae</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                My <span class="text-gradient-move">Resume</span>
+            </h1>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                My <span class="text-gradient-move">Resume</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Merging creativity with technology to design intelligent, meaningful, and beautifully built digital experiences.
+            </p>
         </div>
 
-        <div class="timeline-item">
-          <h3>Full Stack Developer Intern — Django & React</h3>
-          <span class="timeline-date">2025- Present</span>
-          <p>
-            Contributed to developing and deploying web applications using Django REST Framework and React.
-            Implemented RESTful APIs, authentication, and interactive UI components while maintaining scalability and clean architecture.
-          </p>
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+
+                <!-- ====== LEFT COLUMN: PROFILE (Sticky on Desktop) ====== -->
+                <div class="lg:col-span-4 space-y-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+
+                    <!-- Profile Card -->
+                    <div class="glass-panel p-8 rounded-3xl sticky top-32">
+                        <div class="flex flex-col items-center text-center mb-8">
+                             <!-- Django Placeholder: <img src="{% static 'images/profile.jpg' %}" ...> -->
+                            <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-br from-primary-400 to-secondary-500 mb-6 shadow-lg shadow-primary-500/30">
+                                <img src="https://drive.google.com/thumbnail?id=1XsI8w6QsRUZgpuhXJUFi00BJAoLNdjee&sz=w1000"
+                                     alt="Profile"
+                                     class="w-full h-full rounded-full object-cover bg-dark-900 border-4 border-dark-950">
+                            </div>
+                            <h2 class="text-2xl font-bold text-white mb-2">Isaac Ndarathi Ngure</h2>
+                            <p class="text-primary-400 font-medium text-sm uppercase tracking-wide">Full Stack Developer</p>
+                        </div>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-secondary-400 shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase">Location</p>
+                                    <p class="font-medium">Nairobi, Kenya</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-secondary-400 shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <p class="text-xs text-slate-500 uppercase">Email</p>
+                                    <p class="font-medium truncate">ndarathiofficial@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-secondary-400 shrink-0">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase">Phone</p>
+                                    <p class="font-medium">+254 713 224 915</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Download Button -->
+                         <a href="{% static 'assets/docs/Isaac_Ngure_Resume.docx' %}"
+                           download
+                           class="block w-full py-4 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold text-center shadow-lg hover:shadow-primary-500/40 hover:scale-[1.02] transition-all relative overflow-hidden group">
+                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                Download CV <i class="fas fa-download group-hover:translate-y-1 transition-transform"></i>
+                            </span>
+                            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        </a>
+
+                    </div>
+
+                    <!-- Education Card (Mobile/Tablet only - hidden on desktop if too long, or stacked below) -->
+                    <div class="glass-panel p-8 rounded-3xl">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fas fa-graduation-cap text-primary-400"></i> Education
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="relative pl-6 border-l border-white/10">
+                                <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-primary-500 border border-dark-950"></div>
+                                <h4 class="text-white font-semibold">B.Sc Computer Science</h4>
+                                <p class="text-slate-400 text-sm mb-1">Dedan Kimathi University</p>
+                                <span class="text-xs text-secondary-400 bg-secondary-500/10 px-2 py-0.5 rounded">Ongoing</span>
+                            </div>
+                            <div class="relative pl-6 border-l border-white/10">
+                                <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-dark-800 border border-slate-600"></div>
+                                <h4 class="text-white font-semibold">MIT xPro Full Stack</h4>
+                                <p class="text-slate-400 text-sm mb-1">E-Mobilis Institute</p>
+                                <span class="text-xs text-slate-500">Certificate</span>
+                            </div>
+                            <div class="relative pl-6 border-l border-white/10">
+                                <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-dark-800 border border-slate-600"></div>
+                                <h4 class="text-white font-semibold">KCSE</h4>
+                                <p class="text-slate-400 text-sm">Baricho High School</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ====== RIGHT COLUMN: EXPERIENCE & SKILLS ====== -->
+                <div class="lg:col-span-8 space-y-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+
+                    <!-- Summary -->
+                    <div class="glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 text-9xl text-white/5 rotate-12">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-4">Professional Summary</h2>
+                        <p class="text-slate-300 leading-relaxed text-lg">
+                            Innovative and detail-oriented Full Stack Developer passionate about crafting user-focused digital solutions. Experienced in <span class="text-primary-400 font-medium">Android</span> and <span class="text-secondary-400 font-medium">Web development</span> using modern frameworks and design systems. Combines creativity, analytical thinking, and clean coding principles to build scalable, performant, and aesthetically refined applications that connect people and technology.
+                        </p>
+                    </div>
+
+                    <!-- Experience Timeline -->
+                    <div class="glass-panel p-8 md:p-10 rounded-3xl">
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                            <i class="fas fa-briefcase text-secondary-400"></i> Experience
+                        </h2>
+
+                        <div class="space-y-12">
+
+                            <!-- Timeline Item 1 -->
+                            <div class="relative pl-8 md:pl-0">
+                                <!-- Mobile Line -->
+                                <div class="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:hidden"></div>
+
+                                <div class="md:grid md:grid-cols-12 md:gap-8">
+                                    <!-- Date (Desktop) -->
+                                    <div class="md:col-span-3 text-right hidden md:block pt-1">
+                                        <span class="text-primary-400 font-bold">2025 - Present</span>
+                                    </div>
+
+                                    <!-- Timeline Line/Dot (Desktop) -->
+                                    <div class="md:col-span-1 relative hidden md:flex justify-center">
+                                        <div class="h-full w-px bg-white/10 absolute top-0"></div>
+                                        <div class="w-4 h-4 rounded-full bg-primary-500 border-4 border-dark-900 z-10 animate-pulse-glow"></div>
+                                    </div>
+
+                                    <!-- Content -->
+                                    <div class="md:col-span-8 relative">
+                                        <!-- Mobile Dot -->
+                                        <div class="absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-primary-500 md:hidden"></div>
+                                        <!-- Mobile Date -->
+                                        <span class="text-primary-400 font-bold text-sm mb-1 block md:hidden">2025 - Present</span>
+
+                                        <h3 class="text-xl font-bold text-white">Freelance Android Developer</h3>
+                                        <p class="text-slate-500 text-sm mb-4">Self Employed</p>
+                                        <p class="text-slate-300 leading-relaxed">
+                                            Designed and built Android applications using Kotlin and Jetpack Compose. Integrated Firebase for authentication, cloud storage, and real-time data handling. Focused on crafting seamless user experiences with strong performance.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item 2 -->
+                            <div class="relative pl-8 md:pl-0">
+                                <div class="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:hidden"></div>
+                                <div class="md:grid md:grid-cols-12 md:gap-8">
+                                    <div class="md:col-span-3 text-right hidden md:block pt-1">
+                                        <span class="text-secondary-400 font-bold">2025 - Present</span>
+                                    </div>
+                                    <div class="md:col-span-1 relative hidden md:flex justify-center">
+                                        <div class="h-full w-px bg-white/10 absolute top-0"></div>
+                                        <div class="w-4 h-4 rounded-full bg-secondary-500 border-4 border-dark-900 z-10"></div>
+                                    </div>
+                                    <div class="md:col-span-8 relative">
+                                        <div class="absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-secondary-500 md:hidden"></div>
+                                        <span class="text-secondary-400 font-bold text-sm mb-1 block md:hidden">2025 - Present</span>
+
+                                        <h3 class="text-xl font-bold text-white">Full Stack Developer Intern</h3>
+                                        <p class="text-slate-500 text-sm mb-4">Django & React</p>
+                                        <p class="text-slate-300 leading-relaxed">
+                                            Contributed to developing and deploying web applications using Django REST Framework and React. Implemented RESTful APIs, authentication, and interactive UI components while maintaining scalability.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item 3 -->
+                            <div class="relative pl-8 md:pl-0">
+                                <div class="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:hidden"></div>
+                                <div class="md:grid md:grid-cols-12 md:gap-8">
+                                    <div class="md:col-span-3 text-right hidden md:block pt-1">
+                                        <span class="text-slate-400 font-bold">Ongoing</span>
+                                    </div>
+                                    <div class="md:col-span-1 relative hidden md:flex justify-center">
+                                        <div class="h-full w-px bg-transparent absolute top-0"></div> <!-- End of line -->
+                                        <div class="w-4 h-4 rounded-full bg-slate-600 border-4 border-dark-900 z-10"></div>
+                                    </div>
+                                    <div class="md:col-span-8 relative">
+                                        <div class="absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-slate-600 md:hidden"></div>
+                                        <span class="text-slate-400 font-bold text-sm mb-1 block md:hidden">Ongoing</span>
+
+                                        <h3 class="text-xl font-bold text-white">Personal & Open Source</h3>
+                                        <p class="text-slate-500 text-sm mb-4">GitHub</p>
+                                        <p class="text-slate-300 leading-relaxed">
+                                            Developed multiple apps integrating Firebase, Google APIs, and M-Pesa API for real-world functionality. Collaborated on GitHub repositories, applying CI/CD pipelines and version control best practices.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Skills Grid -->
+                    <div class="glass-panel p-8 md:p-10 rounded-3xl">
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                            <i class="fas fa-layer-group text-pink-400"></i> Technical Skills
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Skill Item -->
+                            <div class="bg-white/5 rounded-xl p-5 border border-white/5 hover:border-primary-500/30 transition-colors group">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-mobile-alt text-xl text-primary-400 group-hover:scale-110 transition-transform"></i>
+                                    <h3 class="font-bold text-white">Android Dev</h3>
+                                </div>
+                                <p class="text-sm text-slate-400">Jetpack Compose, Kotlin, Firebase, MVVM Architecture</p>
+                            </div>
+
+                            <!-- Skill Item -->
+                            <div class="bg-white/5 rounded-xl p-5 border border-white/5 hover:border-secondary-500/30 transition-colors group">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-globe text-xl text-secondary-400 group-hover:scale-110 transition-transform"></i>
+                                    <h3 class="font-bold text-white">Web Dev</h3>
+                                </div>
+                                <p class="text-sm text-slate-400">Django, HTML5, CSS3, JavaScript, REST APIs</p>
+                            </div>
+
+                            <!-- Skill Item -->
+                            <div class="bg-white/5 rounded-xl p-5 border border-white/5 hover:border-green-500/30 transition-colors group">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-database text-xl text-green-400 group-hover:scale-110 transition-transform"></i>
+                                    <h3 class="font-bold text-white">Backend</h3>
+                                </div>
+                                <p class="text-sm text-slate-400">Django REST Framework, Firebase, MySQL, SQLite</p>
+                            </div>
+
+                            <!-- Skill Item -->
+                            <div class="bg-white/5 rounded-xl p-5 border border-white/5 hover:border-pink-500/30 transition-colors group">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-paint-brush text-xl text-pink-400 group-hover:scale-110 transition-transform"></i>
+                                    <h3 class="font-bold text-white">Design</h3>
+                                </div>
+                                <p class="text-sm text-slate-400">Figma, Material Design, Responsive Interfaces</p>
+                            </div>
+
+                            <!-- Skill Item -->
+                            <div class="bg-white/5 rounded-xl p-5 border border-white/5 hover:border-yellow-500/30 transition-colors group">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-cloud text-xl text-yellow-400 group-hover:scale-110 transition-transform"></i>
+                                    <h3 class="font-bold text-white">Cloud</h3>
+                                </div>
+                                <p class="text-sm text-slate-400">Firebase, Google Cloud, AWS Basics</p>
+                            </div>
+
+                             <!-- Skill Item -->
+                            <div class="bg-white/5 rounded-xl p-5 border border-white/5 hover:border-orange-500/30 transition-colors group">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-code-branch text-xl text-orange-400 group-hover:scale-110 transition-transform"></i>
+                                    <h3 class="font-bold text-white">DevOps</h3>
+                                </div>
+                                <p class="text-sm text-slate-400">Git, GitHub, GitLab, Continuous Integration</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strengths Section -->
+                    <div class="glass-panel p-8 rounded-3xl border-l-4 border-primary-500">
+                        <h3 class="text-lg font-bold text-white mb-2">Why Work With Me?</h3>
+                        <p class="text-slate-300 italic">
+                            "Fast learner with a passion for innovation and clean architecture. Strong communicator and problem solver with an eye for design and detail. Adaptable, collaborative, and committed to delivering efficient, creative, and future-ready solutions."
+                        </p>
+                    </div>
+
+                </div>
+            </div>
         </div>
+    </main>
 
-        <div class="timeline-item">
-          <h3>Personal & Open Source Projects</h3>
-          <span class="timeline-date">Ongoing</span>
-          <p>
-            Developed multiple apps integrating Firebase, Google APIs, and M-Pesa API for real-world functionality.
-            Collaborated on GitHub repositories, applying CI/CD pipelines and version control best practices.
-          </p>
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-dark-950 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="text-xl font-bold text-white">Isaac<span class="text-primary-400">.dev</span></span>
+            <p class="text-slate-500 text-sm mt-2">© 2026 Isaac Ngure. Crafted with ❤️.</p>
         </div>
-      </div>
+    </footer>
 
-      <h2>Technical Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-item"><i class="fas fa-mobile-alt"></i><h3>Android Development</h3><p>Jetpack Compose, Kotlin, Firebase, MVVM Architecture</p></div>
-        <div class="skill-item"><i class="fas fa-globe"></i><h3>Web Development</h3><p>Django, HTML5, CSS3, JavaScript, REST APIs</p></div>
-        <div class="skill-item"><i class="fas fa-database"></i><h3>Backend & Databases</h3><p>Django REST Framework, Firebase, MySQL, SQLite</p></div>
-        <div class="skill-item"><i class="fas fa-paint-brush"></i><h3>UI/UX Design</h3><p>Figma, Material Design, Responsive Interfaces</p></div>
-        <div class="skill-item"><i class="fas fa-cloud"></i><h3>Cloud Integration</h3><p>Firebase, Google Cloud, AWS Basics</p></div>
-        <div class="skill-item"><i class="fas fa-code-branch"></i><h3>Version Control</h3><p>Git, GitHub, GitLab, Continuous Integration</p></div>
-      </div>
-
-      <h2>Strengths</h2>
-      <p>
-        Fast learner with a passion for innovation and clean architecture. Strong communicator and problem solver with an eye for design and detail. Adaptable, collaborative, and committed to delivering efficient, creative, and future-ready solutions.
-      </p>
-
-      <div class="resume-btn-container">
-        <a href="{% static 'assets/docs/Isaac_Ngure_Resume.docx' %}" class="btn">Download CV</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-{% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('shadow-lg');
+                else navbar.classList.remove('shadow-lg');
+            });
+        });
+    </script>
+</body>
+</html>

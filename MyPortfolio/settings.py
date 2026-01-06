@@ -1,8 +1,7 @@
 """
 Django settings for MyPortfolio project.
-Secure version for Render deployment with environment variables.
+Complete version for local development and Render deployment.
 """
-
 from pathlib import Path
 import os
 
@@ -18,11 +17,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY from environment variable
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-default-key-for-local')
 
-
 # Debug mode from environment variable (default False)
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['isaacngure.onrender.com', 'localhost', '127.0.0.1']
+
+# Render adds a RENDER_EXTERNAL_HOSTNAME environment variable
+render_external_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if render_external_hostname:
+    ALLOWED_HOSTS.append(render_external_hostname)
 
 
 # -------------------------
@@ -40,8 +43,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Static file handling
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise must be above all except Security
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,12 +58,17 @@ ROOT_URLCONF = 'MyPortfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Add templates path if needed
+        'DIRS': [BASE_DIR / 'templates'],  # Included templates folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -102,13 +110,25 @@ USE_TZ = True
 
 
 # -------------------------
-# STATIC FILES
+# STATIC FILES (CSS, JavaScript, Images)
 # -------------------------
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Local static folders
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# The directory where collectstatic will collect static files for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# WhiteNoise settings for handling static files
+# Use CompressedManifest for production (hashes filenames for caching)
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    # Optional: Helps WhiteNoise find files during development without running collectstatic
+    WHITENOISE_USE_FINDERS = True
 
 # -------------------------
 # DEFAULT AUTO FIELD
@@ -132,4 +152,3 @@ DEFAULT_FROM_EMAIL = os.environ.get(
 CONTACT_RECEIVER_EMAIL = os.environ.get(
     "CONTACT_RECEIVER_EMAIL", "ndarathiofficial@gmail.com"
 )
-

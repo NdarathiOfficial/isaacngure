@@ -1,68 +1,281 @@
-{% extends "base.html" %}
-{% block title %}Skills | Isaac Ngure{% endblock %}
+{% load static %}
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Isaac Ngure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+                        primary: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+                        secondary: { 400: '#a78bfa', 500: '#8b5cf6' }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.2)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.8)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-{% block hero %}
-<section class="page-hero">
-  <h1>My <span class="gradient-text">Skills</span></h1>
-  <p>Blending design, development, and innovation to create impactful digital experiences.</p>
-</section>
-{% endblock %}
+        .glass-panel:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        }
 
-{% block content %}
-<section class="skills-section">
-  <div class="skills-wrapper">
+        .text-gradient-move {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc, #38bdf8);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite reverse;
+        }
 
-    <div class="skills-info-card">
-      <h2>Technical Expertise</h2>
-      <p>
-        I specialize in full-stack mobile and web development with a strong emphasis on elegant UI/UX design.
-        Here’s what I bring to the table.
-      </p>
+        .bg-grid-modern {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
 
-      <div class="skills-details">
-        <div><i class="fas fa-code"></i> Android (Jetpack Compose, Kotlin, Firebase)</div>
-        <div><i class="fas fa-globe"></i> Web (HTML, CSS, JS, Django)</div>
-        <div><i class="fas fa-database"></i> Backend (Django REST, Firebase, MySQL)</div>
-        <div><i class="fas fa-paint-brush"></i> UI/UX (Figma, Material Design, Responsive Layouts)</div>
-        <div><i class="fas fa-cloud"></i> Cloud Integration (Firebase, Google APIs, AWS basics)</div>
-        <div><i class="fas fa-terminal"></i> Version Control (Git, GitHub, CI/CD basics)</div>
-      </div>
+        .skill-badge {
+            @apply flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-primary-500/30 hover:bg-white/10 transition-all duration-300;
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-slate-300 font-sans selection:bg-primary-500 selection:text-white overflow-x-hidden antialiased">
+
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute inset-0 bg-grid-modern opacity-60"></div>
     </div>
 
-    <div class="skills-showcase-card">
-      <h2>Skill Highlights</h2>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <h3>Android Development</h3>
-          <p>Native Android apps with Kotlin, Jetpack Compose, and Firebase integration.</p>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 bg-dark-950/70 backdrop-blur-xl border-b border-white/5"></div>
+        <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white tracking-tight group">
+                Isaac<span class="text-primary-400">.dev</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="{% url 'index' %}" class="text-white hover:text-primary-400 transition-colors">Home</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-primary-400 transition-colors">About</a>
+                <a href="{% url 'projects' %}" class="text-white hover:text-primary-400 transition-colors">Projects</a>
+                <a href="#" class="px-5 py-2 rounded-full border border-primary-400/50 bg-primary-500/10 text-primary-400">Skills</a>
+                <a href="{% url 'resume' %}" class="text-white hover:text-primary-400 transition-colors">Resume</a>
+                <a href="{% url 'contact' %}" class="text-white hover:text-primary-400 transition-colors">Contact</a>
+            </div>
         </div>
+    </nav>
 
-        <div class="skill-item">
-          <h3>Web Development</h3>
-          <p>Modern, responsive websites using Django, HTML5, CSS3, and JavaScript.</p>
-        </div>
+    <main class="relative z-10 pt-32 pb-24">
+        <!-- ===== HERO SECTION ===== -->
+        <section class="max-w-7xl mx-auto px-6 mb-20">
+            <div class="text-center animate-fade-in-up opacity-0">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                    My <span class="text-gradient-move">Skills</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Blending design, development, and innovation to create impactful digital experiences through a modern technical stack.
+                </p>
+            </div>
+        </section>
 
-        <div class="skill-item">
-          <h3>UI/UX Design</h3>
-          <p>Clean, user-centered interfaces designed for clarity and usability.</p>
-        </div>
+        <!-- ===== SKILLS CONTENT ===== -->
+        <section class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Technical Expertise Card (Left Sidebar style) -->
+                <div class="lg:col-span-4 space-y-8">
+                    <div class="glass-panel p-8 rounded-[2.5rem] animate-fade-in-up opacity-0" style="animation-delay: 0.2s;">
+                        <h2 class="text-2xl font-bold text-white mb-4">Technical Expertise</h2>
+                        <p class="text-slate-400 mb-8 leading-relaxed">
+                            I specialize in full-stack mobile and web development with a strong emphasis on elegant UI/UX design.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-500/20 text-primary-400">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <span class="text-sm font-medium">Android (Kotlin, Compose)</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary-500/20 text-secondary-400">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <span class="text-sm font-medium">Web (HTML, CSS, JS, Django)</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-green-500/20 text-green-400">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <span class="text-sm font-medium">Backend (DRF, Firebase)</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-pink-500/20 text-pink-400">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <span class="text-sm font-medium">UI/UX (Figma, Material)</span>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="skill-item">
-          <h3>Backend Systems</h3>
-          <p>Building secure APIs and data-driven systems using Django REST Framework.</p>
-        </div>
+                    <!-- Cloud & Tools -->
+                    <div class="glass-panel p-8 rounded-[2.5rem] animate-fade-in-up opacity-0" style="animation-delay: 0.3s;">
+                        <h2 class="text-xl font-bold text-white mb-6">Cloud & Infrastructure</h2>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">Firebase</span>
+                            <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">Google APIs</span>
+                            <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">AWS Basics</span>
+                            <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">Git / GitHub</span>
+                            <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="skill-item">
-          <h3>Cloud Integration</h3>
-          <p>Deploying and integrating cloud services like Firebase Authentication and Firestore.</p>
-        </div>
+                <!-- Skill Highlights Grid (Main Content) -->
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up opacity-0" style="animation-delay: 0.4s;">
+                        
+                        <!-- Android Card -->
+                        <div class="glass-panel p-8 rounded-[2.5rem] group">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-primary-500/20">
+                                <i class="fas fa-mobile-screen text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Android Development</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Crafting high-performance native Android applications using **Kotlin** and **Jetpack Compose** with robust Firebase backend integrations.
+                            </p>
+                        </div>
 
-        <div class="skill-item">
-          <h3>Problem Solving</h3>
-          <p>Turning complex challenges into practical, elegant, and scalable solutions.</p>
+                        <!-- Web Card -->
+                        <div class="glass-panel p-8 rounded-[2.5rem] group">
+                            <div class="w-14 h-14 bg-gradient-to-br from-secondary-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-secondary-500/20">
+                                <i class="fas fa-layer-group text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Web Development</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Building modern, SEO-optimized, and responsive web platforms using **Django**, **Tailwind CSS**, and dynamic JavaScript frameworks.
+                            </p>
+                        </div>
+
+                        <!-- Design Card -->
+                        <div class="glass-panel p-8 rounded-[2.5rem] group">
+                            <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-pink-500/20">
+                                <i class="fas fa-bezier-curve text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">UI/UX Design</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Creating visually stunning and highly intuitive user interfaces with a focus on accessibility and modern aesthetics using **Figma**.
+                            </p>
+                        </div>
+
+                        <!-- API Card -->
+                        <div class="glass-panel p-8 rounded-[2.5rem] group">
+                            <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-emerald-500/20">
+                                <i class="fas fa-server text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Backend Systems</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Designing secure, scalable, and efficient RESTful APIs using **Django REST Framework** to power complex data-driven applications.
+                            </p>
+                        </div>
+
+                        <!-- Cloud Card -->
+                        <div class="glass-panel p-8 rounded-[2.5rem] group">
+                            <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-orange-500/20">
+                                <i class="fas fa-cloud-arrow-up text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Cloud Integration</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Seamlessly deploying applications and managing cloud services like **Firestore**, **Auth**, and **Storage** for real-time capabilities.
+                            </p>
+                        </div>
+
+                        <!-- Problem Solving Card -->
+                        <div class="glass-panel p-8 rounded-[2.5rem] group">
+                            <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-800 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-indigo-500/20">
+                                <i class="fas fa-lightbulb text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Problem Solving</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Transforming complex business challenges into elegant, scalable software solutions through analytical thinking and clean code.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!--        &lt;!&ndash; ===== MINI CTA ===== &ndash;&gt;-->
+<!--        <section class="max-w-7xl mx-auto px-6 mt-24">-->
+<!--            <div class="glass-panel p-10 rounded-[3rem] text-center border-white/5 overflow-hidden relative">-->
+<!--                <div class="absolute inset-0 bg-primary-500/5 blur-3xl rounded-full"></div>-->
+<!--                <h2 class="text-3xl font-bold text-white mb-4 relative z-10">Want to see these skills in action?</h2>-->
+<!--                <div class="flex justify-center gap-4 relative z-10">-->
+<!--                    <a href="#" class="px-8 py-3 bg-white text-dark-950 font-bold rounded-xl hover:scale-105 transition-transform">View Projects</a>-->
+<!--                    <a href="#" class="px-8 py-3 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-colors">Contact Me</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-dark-950/50 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="text-xl font-bold text-white">Isaac<span class="text-primary-400">.dev</span></span>
+            <p class="text-slate-500 text-sm mt-2">© 2026 Isaac Ngure. Building the future, one pixel at a time.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-{% endblock %}
+    </footer>
+
+    <script>
+        // Reveal elements on scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

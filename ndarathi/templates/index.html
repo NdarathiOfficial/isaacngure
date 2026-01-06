@@ -1,74 +1,305 @@
-{% extends "base.html" %}
-{% block title %}Home | Isaac Ngure{% endblock %}
+{% load static %}
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Isaac Ngure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+                        primary: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+                        secondary: { 400: '#a78bfa', 500: '#8b5cf6' }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.2)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.8)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
+                        pulseGlow: { '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(56, 189, 248, 0.5)' }, '50%': { opacity: '.8', boxShadow: '0 0 10px rgba(56, 189, 248, 0.2)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-panel:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        }
+        .text-gradient-move {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc, #38bdf8);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite reverse;
+        }
+        .bg-grid-modern {
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-slate-300 font-sans selection:bg-primary-500 selection:text-white overflow-x-hidden antialiased">
 
-{% block content %}
-
-<!-- ===== ABOUT / INTRO SECTION ===== -->
-<section class="intro-section" data-aos="fade-up" data-aos-duration="900">
-  <h2 class="section-title">Who Am I?</h2>
-  <p class="section-text">
-    I’m a passionate Software Developer who transforms ideas into reality through clean,
-    efficient, and visually stunning digital experiences. I specialize in
-    <span class="highlight">Android development</span> and
-    <span class="highlight">modern web applications</span>, blending creativity with technical precision.
-  </p>
-</section>
-
-<!-- ===== SKILLS PREVIEW ===== -->
-<section class="skills-preview" data-aos="fade-up" data-aos-delay="200">
-  <h2 class="section-title">What I Do</h2>
-
-  <div class="skills-grid">
-    <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
-      <i class="fas fa-mobile-alt skill-icon"></i>
-      <h3>Android Development</h3>
-      <p>Building fast, modern, and user-focused Android apps using Kotlin + Jetpack Compose.</p>
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+        <div class="absolute inset-0 bg-grid-modern opacity-60"></div>
     </div>
 
-    <div class="skill-card" data-aos="zoom-in" data-aos-delay="450">
-      <i class="fas fa-code skill-icon"></i>
-      <h3>Web Development</h3>
-      <p>Creating responsive and interactive websites with Django, HTML, CSS & JavaScript.</p>
-    </div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 bg-dark-950/70 backdrop-blur-xl border-b border-white/5"></div>
+        <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white tracking-tight group">
+                <span class="inline-block transform group-hover:-rotate-12 transition-transform duration-300">I</span>saac<span class="text-primary-400">.dev</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <!-- Active: Home -->
+                <a href="{% url 'index' %}" class="px-5 py-2 rounded-full border border-primary-400/50 bg-primary-500/10 text-primary-400">Home</a>
+                <a href="{% url 'about' %}" class="text-white hover:text-primary-400 transition-colors relative group">About</a>
+                <a href="{% url 'projects' %}" class="text-white hover:text-primary-400 transition-colors relative group">Projects</a>
+                <a href="{% url 'skills' %}" class="text-white hover:text-primary-400 transition-colors relative group">Skills</a>
+                <a href="{% url 'resume' %}" class="text-white hover:text-primary-400 transition-colors relative group">Resume</a>
+                <a href="{% url 'contact' %}" class="text-white hover:text-primary-400 transition-colors relative group">Contact</a>
 
-    <div class="skill-card" data-aos="zoom-in" data-aos-delay="600">
-      <i class="fas fa-pencil-ruler skill-icon"></i>
-      <h3>UI / UX Design</h3>
-      <p>Designing intuitive interfaces that enhance usability and deliver powerful experiences.</p>
-    </div>
-  </div>
-</section>
+            </div>
+            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
 
-<!-- ===== FEATURED PROJECTS ===== -->
-<section class="featured-projects" data-aos="fade-up" data-aos-delay="300">
-  <h2 class="section-title">Featured Work</h2>
+    <main class="relative z-10">
 
-  <div class="project-list">
+        <!-- ===== HERO SECTION ===== -->
+        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 relative">
+            <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.1s;">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 hover:bg-white/10 transition-colors cursor-default">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="text-xs font-semibold text-primary-400 tracking-wide uppercase">Available for Hire</span>
+                </div>
+            </div>
 
-    <div class="project-card" data-aos="fade-right" data-aos-delay="400">
-      <div class="project-info">
-        <h3>Hospital Management App</h3>
-        <p>An advanced Jetpack Compose application for doctors to manage patients, update records, and track real-time data.</p>
-        <a href="{% url 'projects' %}" class="btn-sm">View Details →</a>
-      </div>
-    </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[1.1] tracking-tight animate-fade-in-up opacity-0 max-w-5xl mx-auto" style="animation-delay: 0.2s;">
+                Building <span class="text-gradient-move relative inline-block">Digital Reality</span>
+            </h1>
 
-    <div class="project-card" data-aos="fade-left" data-aos-delay="500">
-      <div class="project-info">
-        <h3>Portfolio Website v2</h3>
-        <p>Your current modern interactive Django portfolio with animations and clean UI.</p>
-        <a href="{% url 'projects' %}" class="btn-sm">View Details →</a>
-      </div>
-    </div>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-12 animate-fade-in-up opacity-0" style="animation-delay: 0.3s;">
+                I’m a passionate Software Developer who transforms ideas into reality. Specializing in <span class="text-primary-400 font-medium">Android development</span> and <span class="text-secondary-400 font-medium">modern web applications</span>.
+            </p>
 
-  </div>
-</section>
+            <div class="flex flex-col sm:flex-row gap-5 animate-fade-in-up opacity-0" style="animation-delay: 0.4s;">
+                <a href="{% url 'projects' %}" class="group relative px-8 py-4 bg-primary-600 rounded-xl font-bold text-white overflow-hidden shadow-lg shadow-primary-500/30 transition-all hover:scale-105">
+                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+                    <span class="relative flex items-center gap-2">
+                        View My Work <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+                <a href="{% url 'contact' %}" class="px-8 py-4 rounded-xl font-semibold text-white border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all hover:scale-105 backdrop-blur-sm">
+                    Contact Me
+                </a>
+            </div>
 
-<!-- ===== CALL TO ACTION ===== -->
-<section class="cta-section" data-aos="zoom-in" data-aos-delay="400">
-  <h2>Let’s Build Something Amazing</h2>
-  <p>Have an idea, app concept, or project? I’m ready when you are.</p>
-  <a href="{% url 'contact' %}" class="btn cta-btn">Contact Me</a>
-</section>
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50 hidden md:block">
+                <i class="fas fa-chevron-down text-white text-xl"></i>
+            </div>
+        </section>
 
-{% endblock %}
+        <!-- ===== SKILLS PREVIEW ===== -->
+        <section id="skills" class="py-24 px-6 max-w-7xl mx-auto relative">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-sm font-bold tracking-widest text-primary-400 uppercase mb-3">What I Do</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white">My Expertise</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skill 1 -->
+                <div class="glass-panel p-8 rounded-3xl group scroll-reveal delay-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 animate-float">
+                        <i class="fas fa-mobile-alt text-3xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Android Development</h4>
+                    <p class="text-slate-400 mb-6">Building fast, modern, and user-focused Android apps using Kotlin + Jetpack Compose.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-panel p-8 rounded-3xl group scroll-reveal delay-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-secondary-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 1s;">
+                        <i class="fas fa-code text-3xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Web Development</h4>
+                    <p class="text-slate-400 mb-6">Creating responsive and interactive websites with Django, HTML, CSS & JavaScript.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass-panel p-8 rounded-3xl group scroll-reveal delay-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 2s;">
+                        <i class="fas fa-pencil-ruler text-3xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">UI / UX Design</h4>
+                    <p class="text-slate-400 mb-6">Designing intuitive interfaces that enhance usability and deliver powerful experiences.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURED PROJECTS ===== -->
+        <section class="py-24 px-6 bg-dark-900/50 border-y border-white/5 backdrop-blur-sm relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-sm font-bold tracking-widest text-secondary-400 uppercase mb-3">Portfolio</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white">Featured Work</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Project Card 1: Hospital App -->
+                    <div class="glass-panel p-8 rounded-3xl flex flex-col group scroll-reveal delay-100">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-primary-500/10 rounded-xl flex items-center justify-center text-primary-400 border border-primary-500/20 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-hospital-user text-2xl"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary-500/10 text-primary-300 border border-primary-500/20">Android</span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">Hospital Management App</h3>
+                        <p class="text-slate-400 mb-6 flex-grow leading-relaxed">
+                            An advanced Jetpack Compose application for doctors to manage patients, update records, and track real-time data efficiently.
+                        </p>
+
+                        <a href="projects.html" class="inline-flex items-center text-white font-medium hover:text-primary-400 transition-colors mt-auto">
+                            View Details <i class="fas fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+
+                    <!-- Project Card 2: Portfolio -->
+                    <div class="glass-panel p-8 rounded-3xl flex flex-col group scroll-reveal delay-200">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 bg-secondary-500/10 rounded-xl flex items-center justify-center text-secondary-400 border border-secondary-500/20 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-laptop-code text-2xl"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-secondary-500/10 text-secondary-300 border border-secondary-500/20">Web</span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-secondary-400 transition-colors">Portfolio Website v2</h3>
+                        <p class="text-slate-400 mb-6 flex-grow leading-relaxed">
+                            Your current modern interactive Django portfolio featuring smooth animations, clean UI architecture, and responsive design.
+                        </p>
+
+                        <a href="{% url 'projects' %}" class="inline-flex items-center text-white font-medium hover:text-secondary-400 transition-colors mt-auto">
+                            View Details <i class="fas fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CALL TO ACTION ===== -->
+        <section class="py-32 px-6 relative">
+            <div class="max-w-4xl mx-auto text-center relative z-10 scroll-reveal">
+
+                <div class="glass-panel p-12 md:p-20 rounded-[3rem] border border-white/10 relative overflow-hidden">
+                    <!-- Glow Effect -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-500/20 blur-[120px] rounded-full pointer-events-none animate-pulse-glow"></div>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10">Let’s Build Something Amazing</h2>
+                    <p class="text-xl text-slate-300 mb-10 max-w-xl mx-auto relative z-10 leading-relaxed">
+                        Have an idea, app concept, or project? I’m ready when you are.
+                    </p>
+
+                    <a href="{% url 'contact' %}" class="inline-block px-10 py-4 bg-white text-dark-950 font-bold rounded-xl hover:bg-slate-200 transition-all transform hover:-translate-y-1 shadow-lg shadow-white/10 relative z-10">
+                        Contact Me
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-dark-950 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="text-xl font-bold text-white">Isaac<span class="text-primary-400">.dev</span></span>
+            <p class="text-slate-500 text-sm mt-2">© 2026 Isaac Ngure. Crafted with ❤️.</p>
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="https://www.github.com/NdarathiOfficial" class="text-slate-400 hover:text-white transition-colors"><i class="fab fa-github text-lg"></i></a>
+                <a href="https://www.linkedin.com/in/isaac-ndarathi-ngure" class="text-slate-400 hover:text-white transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                <a href="https://x.com/ndaraofficial" class="text-slate-400 hover:text-white transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Intersection Observer for Scroll Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in-up');
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Select all elements with 'scroll-reveal' class
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                el.style.opacity = '0'; // Initially hide
+                observer.observe(el);
+            });
+
+            // Navbar Glass Effect on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
